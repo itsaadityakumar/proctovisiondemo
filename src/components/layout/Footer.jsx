@@ -2,56 +2,63 @@ import { Link } from 'react-router-dom';
 import { brand } from '../../config/brand';
 import { Shield, Mail, Phone, MapPin } from 'lucide-react';
 
-export default function Footer() {
-  const currentYear = new Date().getFullYear();
+const platformLinks = [
+  { to: '/platform', label: 'Features' },
+  { to: '/how-it-works', label: 'How It Works' },
+  { to: '/security', label: 'Security' },
+  { to: '/pricing', label: 'Pricing' },
+];
 
+const companyLinks = [
+  { to: '/about', label: 'About' },
+  { to: '/contact', label: 'Contact' },
+  { to: '/terms', label: 'Terms' },
+  { to: '/privacy', label: 'Privacy' },
+];
+
+export default function Footer() {
   return (
-    <footer className="footer">
+    <footer className="section-dark footer">
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <Link to="/" className="navbar-logo" style={{ color: 'var(--text-primary)', marginBottom: 12 }}>
-              <span className="logo-icon"><Shield size={16} /></span>
-              {brand.name}
+            <Link to="/" className="navbar-logo" style={{ color: 'var(--text-white)', marginBottom: 14 }}>
+              <span className="logo-icon"><Shield size={14} /></span>{brand.name}
             </Link>
-            <p>{brand.tagline} — Enterprise-grade secure examination platform for institutions and educators.</p>
-            <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <a href={`mailto:${brand.email}`} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                <Mail size={14} /> {brand.email}
-              </a>
-              <a href={`tel:${brand.phone}`} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                <Phone size={14} /> {brand.phone}
-              </a>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                <MapPin size={14} /> {brand.location}
-              </span>
+            <p>{brand.tagline} — Secure examination platform for institutions and educators.</p>
+          </div>
+
+          <div>
+            <h4 className="footer-heading">Platform</h4>
+            <div className="footer-links">
+              {platformLinks.map((link) => (
+                <Link key={link.to} to={link.to} className="footer-link">{link.label}</Link>
+              ))}
             </div>
           </div>
 
-          <div className="footer-col">
-            <h4>Platform</h4>
-            <Link to="/platform">Features</Link>
-            <Link to="/how-it-works">How It Works</Link>
-            <Link to="/security">Security</Link>
-            <Link to="/pricing">Pricing</Link>
+          <div>
+            <h4 className="footer-heading">Company</h4>
+            <div className="footer-links">
+              {companyLinks.map((link) => (
+                <Link key={link.to} to={link.to} className="footer-link">{link.label}</Link>
+              ))}
+            </div>
           </div>
 
-          <div className="footer-col">
-            <h4>Company</h4>
-            <Link to="/about">About Us</Link>
-            <Link to="/about#leadership">Leadership</Link>
-            <Link to="/contact">Contact</Link>
-            <Link to="/terms">Terms</Link>
-            <Link to="/privacy">Privacy</Link>
-          </div>
-
-          <div className="footer-col">
-            <h4>Connect</h4>
-            <a href={brand.social.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href={brand.social.twitter} target="_blank" rel="noopener noreferrer">Twitter</a>
-            <a href={brand.social.github} target="_blank" rel="noopener noreferrer">GitHub</a>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
+          <div>
+            <h4 className="footer-heading">Connect</h4>
+            <div className="footer-links">
+              <a href={`mailto:${brand.email}`} className="footer-link" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <Mail size={12} /> Email
+              </a>
+              <a href={`tel:${brand.phone}`} className="footer-link" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <Phone size={12} /> Phone
+              </a>
+              <span className="footer-link" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <MapPin size={12} /> Mohali, India
+              </span>
+            </div>
           </div>
         </div>
 

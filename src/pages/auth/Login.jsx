@@ -4,7 +4,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useToast } from '../../hooks/useToast';
 import { login } from '../../services/authService';
 import { brand } from '../../config/brand';
-import { Shield } from 'lucide-react';
+import { Shield, Loader2, Check, ArrowLeft } from 'lucide-react';
 
 export default function Login() {
   const [activeTab, setActiveTab] = useState('student');
@@ -29,7 +29,6 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
-
     setLoading(true);
     try {
       const result = await login(email, password, activeTab);
@@ -49,52 +48,39 @@ export default function Login() {
 
   return (
     <div className="auth-page">
+      {/* Animated background orbs */}
+      <div className="auth-orb auth-orb-1" />
+      <div className="auth-orb auth-orb-2" />
+      <div className="auth-orb auth-orb-3" />
+      <div className="auth-orb auth-orb-4" />
+
+      <Link to="/" className="auth-back-float">
+        <ArrowLeft size={18} />
+      </Link>
+
+      {/* Glass card */}
       <div className="auth-card">
-        <div style={{ textAlign: 'center', marginBottom: 28 }}>
-          <Link
-            to="/"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 10,
-              fontWeight: 700,
-              fontSize: '1.2rem',
-              color: 'var(--text-primary)',
-            }}
-          >
-            <span
-              style={{
-                width: 36,
-                height: 36,
-                background: 'var(--accent)',
-                borderRadius: 'var(--radius-sm)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'white',
-                fontWeight: 800,
-                fontSize: '0.9rem',
-              }}
-            >
-              <Shield size={18} />
-            </span>
-            {brand.name}
-          </Link>
+        <Link to="/" className="auth-logo">
+          <span className="auth-logo-icon"><Shield size={26} /></span>
+          <span className="auth-logo-text">{brand.name}</span>
+        </Link>
+
+        <div className="auth-heading">
+          <h1>Welcome back</h1>
+          <p>Sign in to your account to continue</p>
         </div>
 
-        <h2 style={{ color: 'var(--text-primary)' }}>Welcome Back</h2>
-        <p className="subtitle">Sign in to your account to continue</p>
-
         <div className="auth-tabs">
+          <div className={`auth-tab-indicator${activeTab === 'teacher' ? ' right' : ''}`} />
           <button
-            className={`auth-tab ${activeTab === 'student' ? 'active' : ''}`}
+            className={`auth-tab${activeTab === 'student' ? ' active' : ''}`}
             onClick={() => setActiveTab('student')}
             type="button"
           >
             Student
           </button>
           <button
-            className={`auth-tab ${activeTab === 'teacher' ? 'active' : ''}`}
+            className={`auth-tab${activeTab === 'teacher' ? ' active' : ''}`}
             onClick={() => setActiveTab('teacher')}
             type="button"
           >
@@ -102,108 +88,70 @@ export default function Login() {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} noValidate>
-          <div className="form-group">
-            <label className="form-label" htmlFor="login-email">
-              Email Address
-            </label>
+        <form onSubmit={handleSubmit} noValidate className="auth-form">
+          <div className="auth-field form-group">
+            <label className="form-label" htmlFor="login-email">Email</label>
             <input
               id="login-email"
               type="email"
-              className={`form-input ${errors.email ? 'error' : ''}`}
+              className={`form-input${errors.email ? ' error' : ''}`}
               placeholder="you@example.com"
               value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                if (errors.email) setErrors((p) => ({ ...p, email: '' }));
-              }}
+              onChange={(e) => { setEmail(e.target.value); if (errors.email) setErrors((p) => ({ ...p, email: '' })); }}
               autoComplete="email"
             />
             {errors.email && <p className="form-error">{errors.email}</p>}
           </div>
 
-          <div className="form-group">
-            <label className="form-label" htmlFor="login-password">
-              Password
-            </label>
+          <div className="auth-field form-group">
+            <label className="form-label" htmlFor="login-password">Password</label>
             <input
               id="login-password"
               type="password"
-              className={`form-input ${errors.password ? 'error' : ''}`}
+              className={`form-input${errors.password ? ' error' : ''}`}
               placeholder="Enter your password"
               value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                if (errors.password) setErrors((p) => ({ ...p, password: '' }));
-              }}
+              onChange={(e) => { setPassword(e.target.value); if (errors.password) setErrors((p) => ({ ...p, password: '' })); }}
               autoComplete="current-password"
             />
             {errors.password && <p className="form-error">{errors.password}</p>}
           </div>
 
-          <div className="form-group" style={{ textAlign: 'center' }}>
+          <div className="auth-field form-group" style={{ textAlign: 'center' }}>
             <div
               className="turnstile-mock"
-              style={{ cursor: 'pointer', margin: '0 auto' }}
-              onClick={() => {
-                setTurnstile(!turnstile);
-                if (errors.turnstile) setErrors((p) => ({ ...p, turnstile: '' }));
-              }}
+              onClick={() => { setTurnstile(!turnstile); if (errors.turnstile) setErrors((p) => ({ ...p, turnstile: '' })); }}
               role="checkbox"
               aria-checked={turnstile}
               tabIndex={0}
             >
-              <div
-                className="check"
-                style={{
-                  background: turnstile ? 'var(--success)' : 'transparent',
-                  borderColor: turnstile ? 'var(--success)' : 'var(--border-light)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  transition: 'all 0.2s',
-                }}
-              >
-                {turnstile && (
-                  <span style={{ color: 'white', fontSize: '0.7rem', fontWeight: 700 }}>
-                    ✓
-                  </span>
-                )}
+              <div className={`check${turnstile ? ' checked' : ''}`}>
+                {turnstile && <Check size={13} color="white" strokeWidth={3} />}
               </div>
               <span>I'm not a robot</span>
             </div>
             {errors.turnstile && <p className="form-error">{errors.turnstile}</p>}
           </div>
 
-          <button
-            type="submit"
-            className="btn btn-primary"
-            style={{ width: '100%', marginTop: 8 }}
-            disabled={loading}
-          >
-            {loading ? (
-              <>
-                <span
-                  className="loading-spinner"
-                  style={{ width: 18, height: 18, borderWidth: 2 }}
-                />
-                Signing in...
-              </>
-            ) : (
-              'Sign In'
-            )}
-          </button>
+          <div className="auth-submit">
+            <button type="submit" className="btn" disabled={loading}>
+              {loading ? (
+                <>
+                  <Loader2 size={18} style={{ animation: 'spin 1s linear infinite' }} />
+                  Signing in...
+                </>
+              ) : 'Sign In'}
+            </button>
+          </div>
         </form>
 
         <div className="auth-links">
           <Link to="/forgot-password">Forgot Password?</Link>
-          <Link to="/signup">Sign Up</Link>
+          <Link to="/signup">Create Account</Link>
         </div>
 
         <div className="auth-footer">
-          {activeTab === 'student'
-            ? 'Demo: student@demo.proctovision.com / demo1234'
-            : 'Demo: teacher@demo.proctovision.com / demo1234'}
+          Don't have an account? <Link to="/signup">Sign up for free</Link>
         </div>
       </div>
     </div>

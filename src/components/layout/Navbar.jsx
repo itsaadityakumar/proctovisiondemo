@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { useTheme } from '../../hooks/useTheme';
 import { brand } from '../../config/brand';
-import { Shield, Menu, X, ChevronDown, BookOpen, Lock, Zap, Building2, Users, Phone } from 'lucide-react';
+import { Shield, Menu, X, ChevronDown, BookOpen, Lock, Zap, Building2, Users, Phone, Sun, Moon } from 'lucide-react';
 
 const productLinks = [
-  { label: 'Platform', path: '/platform', icon: BookOpen, desc: 'Full examination platform' },
+  { label: 'Platform', path: '/platform', icon: BookOpen, desc: 'Complete examination platform' },
   { label: 'How It Works', path: '/how-it-works', icon: Zap, desc: 'Step-by-step guide' },
   { label: 'Security', path: '/security', icon: Lock, desc: 'Security & proctoring' },
 ];
@@ -20,115 +21,110 @@ function Dropdown({ label, links, isOpen, onToggle, onClose }) {
   const ref = useRef(null);
 
   useEffect(() => {
-    const handleClick = (e) => {
+    const handler = (e) => {
       if (ref.current && !ref.current.contains(e.target)) onClose();
     };
-    if (isOpen) document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
+    if (isOpen) document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
   }, [isOpen, onClose]);
 
   return (
     <div className="nav-dropdown" ref={ref}>
-      <button className={`nav-dropdown-trigger ${isOpen ? 'active' : ''}`} onClick={onToggle}>
+      <button className={`nav-dropdown-trigger${isOpen ? ' active' : ''}`} onClick={onToggle}>
         {label}
-        <ChevronDown size={14} className={`nav-dropdown-chevron ${isOpen ? 'open' : ''}`} />
+        <ChevronDown size={12} className={`nav-dropdown-chevron${isOpen ? ' open' : ''}`} />
       </button>
-      {isOpen && (
-        <div className="nav-dropdown-menu">
-          {links.map((link) => (
-            <Link key={link.path} to={link.path} className="nav-dropdown-item" onClick={onClose}>
-              <span className="nav-dropdown-icon"><link.icon size={16} /></span>
-              <span className="nav-dropdown-text">
-                <span className="nav-dropdown-label">{link.label}</span>
-                <span className="nav-dropdown-desc">{link.desc}</span>
-              </span>
-            </Link>
-          ))}
-        </div>
-      )}
+      <div className={`nav-dropdown-menu${isOpen ? ' open' : ''}`} style={!isOpen ? { pointerEvents: 'none' } : undefined}>
+        {links.map((l) => (
+          <Link key={l.path} to={l.path} className="nav-dropdown-item" onClick={onClose}>
+            <span className="nav-dropdown-icon"><l.icon size={16} /></span>
+            <span className="nav-dropdown-text">
+              <span className="nav-dropdown-label">{l.label}</span>
+              <span className="nav-dropdown-desc">{l.desc}</span>
+            </span>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
 
 export default function Navbar() {
   const { user } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null);
+  const [openDrop, setOpenDrop] = useState(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
     setMobileOpen(false);
-    setOpenDropdown(null);
+    setOpenDrop(null);
   }, [location.pathname]);
 
   if (user) return null;
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (p) => location.pathname === p;
 
   return (
     <>
       <header className={`navbar${scrolled ? ' scrolled' : ''}`}>
         <div className="navbar-inner">
           <Link to="/" className="navbar-logo">
-            <span className="logo-icon"><Shield size={16} /></span>
+            <span className="logo-icon"><Shield size={14} /></span>
             {brand.name}
           </Link>
 
           <nav className="navbar-links">
-            <Link to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>Home</Link>
-
+            <Link to="/" className={`nav-link${isActive('/') ? ' active' : ''}`}>Home</Link>
             <Dropdown
               label="Product"
               links={productLinks}
-              isOpen={openDropdown === 'product'}
-              onToggle={() => setOpenDropdown(openDropdown === 'product' ? null : 'product')}
-              onClose={() => setOpenDropdown(null)}
+              isOpen={openDrop === 'product'}
+              onToggle={() => setOpenDrop(openDrop === 'product' ? null : 'product')}
+              onClose={() => setOpenDrop(null)}
             />
-
             <Dropdown
               label="Company"
               links={companyLinks}
-              isOpen={openDropdown === 'company'}
-              onToggle={() => setOpenDropdown(openDropdown === 'company' ? null : 'company')}
-              onClose={() => setOpenDropdown(null)}
+              isOpen={openDrop === 'company'}
+              onToggle={() => setOpenDrop(openDrop === 'company' ? null : 'company')}
+              onClose={() => setOpenDrop(null)}
             />
-
-            <Link to="/pricing" className={`nav-link ${isActive('/pricing') ? 'active' : ''}`}>Pricing</Link>
+            <Link to="/pricing" className={`nav-link${isActive('/pricing') ? ' active' : ''}`}>Pricing</Link>
           </nav>
 
           <div className="navbar-actions">
-            <Link to="/login" className="btn btn-ghost btn-sm">Login</Link>
-            <Link to="/signup" className="btn btn-primary btn-sm">Sign Up Free</Link>
+            <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+            <Link to="/login" className="btn btn-outline btn-sm">Login</Link>
+            <Link to="/signup" className="btn btn-primary btn-sm">Sign Up</Link>
           </div>
 
-          <button className="navbar-mobile-btn" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          <button className="navbar-mobile-btn" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Menu">
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </header>
 
-      {/* Mobile Nav */}
       <div className={`mobile-nav${mobileOpen ? ' open' : ''}`}>
         <div className="mobile-nav-header">
           <Link to="/" className="navbar-logo" onClick={() => setMobileOpen(false)}>
-            <span className="logo-icon"><Shield size={16} /></span>
-            {brand.name}
+            <span className="logo-icon"><Shield size={14} /></span>{brand.name}
           </Link>
           <button className="navbar-mobile-btn" onClick={() => setMobileOpen(false)} aria-label="Close">
-            <X size={22} />
+            <X size={20} />
           </button>
         </div>
-
         <div className="mobile-nav-links">
           <Link to="/" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>Home</Link>
-
           <div className="mobile-nav-section">
             <span className="mobile-nav-section-title">Product</span>
             {productLinks.map((l) => (
@@ -137,7 +133,6 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-
           <div className="mobile-nav-section">
             <span className="mobile-nav-section-title">Company</span>
             {companyLinks.map((l) => (
@@ -146,13 +141,11 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-
           <Link to="/pricing" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>Pricing</Link>
         </div>
-
         <div className="mobile-nav-actions">
-          <Link to="/login" className="btn btn-secondary" style={{ width: '100%' }} onClick={() => setMobileOpen(false)}>Login</Link>
-          <Link to="/signup" className="btn btn-primary" style={{ width: '100%' }} onClick={() => setMobileOpen(false)}>Sign Up Free</Link>
+          <Link to="/login" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }} onClick={() => setMobileOpen(false)}>Login</Link>
+          <Link to="/signup" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={() => setMobileOpen(false)}>Sign Up</Link>
         </div>
       </div>
     </>

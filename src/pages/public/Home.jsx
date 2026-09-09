@@ -1,408 +1,389 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { brand, team } from '../../config/brand';
+import Reveal from '../../components/ui/Reveal';
 import {
-  Shield,
-  BookOpen,
-  Lock,
-  Users,
-  BarChart3,
-  Settings,
-  ChevronRight,
-  Eye,
-  GraduationCap,
-  Building2,
-  UserCheck,
-  Briefcase,
-  ArrowRight,
-  Zap,
-  Globe,
-  CheckCircle,
+  Shield, BookOpen, Lock, Users, BarChart3, Key, Zap,
+  GraduationCap, Building2, UserCheck, Briefcase, ArrowRight,
+  ClipboardList, Mail, Phone, MapPin
 } from 'lucide-react';
-import { team, pricing } from '../../config/brand';
-import { useInView } from '../../hooks/useInView';
 
 const features = [
-  {
-    icon: BookOpen,
-    title: 'Online Examination',
-    description: 'Conduct secure online exams with real-time monitoring, auto-submission, and instant result generation.',
-  },
-  {
-    icon: Settings,
-    title: 'Exam Management',
-    description: 'Create, schedule, and manage examinations with flexible question banks, time limits, and difficulty levels.',
-  },
-  {
-    icon: Lock,
-    title: 'X-Code Access',
-    description: 'Unique exam entry codes ensure only authorized students can access specific examinations.',
-  },
-  {
-    icon: Shield,
-    title: 'Anti-Cheating Architecture',
-    description: 'Multi-layered security with tab-switch detection, fullscreen enforcement, and activity logging.',
-  },
-  {
-    icon: Users,
-    title: 'Student Management',
-    description: 'Organize students by classes, departments, and roles with bulk import and enrollment features.',
-  },
-  {
-    icon: BarChart3,
-    title: 'Analytics Ready',
-    description: 'Detailed performance analytics, score distributions, and institutional reporting dashboards.',
-  },
+  { icon: BookOpen, title: 'Online Examinations', desc: 'Conduct secure, structured online exams with controlled access and real-time monitoring.', color: '#0071E3' },
+  { icon: ClipboardList, title: 'Exam Management', desc: 'Create, schedule, and manage examinations from a centralized dashboard.', color: '#5856D6' },
+  { icon: Key, title: 'X-Code Access', desc: 'Unique exam access codes for controlled, time-bound examination entry.', color: '#FF9F0A' },
+  { icon: Shield, title: 'Anti-Cheating Design', desc: 'Security-first architecture designed to maintain examination integrity.', color: '#34C759' },
+  { icon: Users, title: 'Student Management', desc: 'Organize students by institution, department, program, and batch.', color: '#BF5AF2' },
+  { icon: BarChart3, title: 'Analytics Ready', desc: 'Examination insights and reporting for institutional decision-making.', color: '#FF375F' },
 ];
 
 const steps = [
-  { title: 'Sign Up & Configure', description: 'Create your institution account and set up departments, classes, and user roles.' },
-  { title: 'Create Examinations', description: 'Design exams with question banks, set time limits, and configure security settings.' },
-  { title: 'Generate X-Codes', description: 'Generate unique exam entry codes and share them with your students securely.' },
-  { title: 'Monitor & Analyze', description: 'Track live exam sessions, review submissions, and access detailed analytics.' },
+  { num: '01', title: 'Institution Onboarding', desc: 'Schools, colleges, and organizations join the platform.', color: '#0071E3' },
+  { num: '02', title: 'Teacher Creates Exam', desc: 'Educators prepare and configure examinations.', color: '#5856D6' },
+  { num: '03', title: 'X-Code Generated', desc: 'System generates a unique access code for each exam.', color: '#FF9F0A' },
+  { num: '04', title: 'Student Enters X-Code', desc: 'Students log in and enter the code to access their exam.', color: '#34C759' },
 ];
 
 const audiences = [
-  { icon: Building2, title: 'Schools', description: 'K-12 institutions looking for reliable online exam solutions.' },
-  { icon: GraduationCap, title: 'Colleges & Universities', description: 'Higher education bodies conducting semester and entrance exams.' },
-  { icon: BookOpen, title: 'Coaching Institutes', description: 'Test prep centers and coaching classes running mock exams.' },
-  { icon: UserCheck, title: 'Individual Teachers', description: 'Independent educators conducting assessments for their students.' },
-  { icon: Briefcase, title: 'Corporate Training', description: 'Organizations running employee assessments and certifications.' },
+  { icon: GraduationCap, label: 'Schools', desc: 'Structured examinations and student assessment.' },
+  { icon: Building2, label: 'Universities', desc: 'Institution-wide academic examination management.' },
+  { icon: Users, label: 'Coaching', desc: 'Large-scale tests and controlled candidate access.' },
+  { icon: UserCheck, label: 'Teachers', desc: 'Simple exam creation and student access.' },
+  { icon: Briefcase, label: 'Corporate', desc: 'Structured assessments and training examinations.' },
 ];
 
-function FeatureSection() {
-  const { ref: ref1, isInView: v1 } = useInView();
-  const { ref: ref2, isInView: v2 } = useInView();
-  const { ref: stepsRef, isInView: stepsVisible } = useInView();
-  const { ref: audRef, isInView: audVisible } = useInView();
-  const { ref: secRef, isInView: secVisible } = useInView();
-  const { ref: priceRef, isInView: priceVisible } = useInView();
-  const { ref: leadRef, isInView: leadVisible } = useInView();
-  const { ref: ctaRef, isInView: ctaVisible } = useInView();
-
-  return (
-    <>
-      {/* Features */}
-      <section className="section">
-        <div className="container">
-          <div ref={ref1} className={`text-center mx-auto reveal ${v1 ? 'visible' : ''}`} style={{ maxWidth: 640 }}>
-            <span className="label">Why Procto Vision</span>
-            <h2 className="heading-lg" style={{ marginTop: 12 }}>
-              Everything You Need for <span className="gradient-text">Secure Examinations</span>
-            </h2>
-            <p className="body-lg" style={{ marginTop: 12 }}>
-              A complete platform designed to make online examinations secure, scalable, and simple for
-              institutions of all sizes.
-            </p>
-          </div>
-          <div ref={ref2} className={`feature-grid reveal ${v2 ? 'visible' : ''}`} style={{ marginTop: 48 }}>
-            {features.map((f) => {
-              const Icon = f.icon;
-              return (
-                <div key={f.title} className="feature-card">
-                  <div className="feature-icon">
-                    <Icon size={24} />
-                  </div>
-                  <h3>{f.title}</h3>
-                  <p>{f.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="section section-border">
-        <div className="container">
-          <div ref={stepsRef} className={`text-center reveal ${stepsVisible ? 'visible' : ''}`} style={{ maxWidth: 640, margin: '0 auto' }}>
-            <span className="label">How It Works</span>
-            <h2 className="heading-lg" style={{ marginTop: 12 }}>
-              Up and Running in <span className="gradient-text">Four Steps</span>
-            </h2>
-            <p className="body-lg" style={{ marginTop: 12 }}>
-              From sign-up to your first live exam, the process is straightforward.
-            </p>
-          </div>
-          <div className="steps-grid" style={{ marginTop: 48 }}>
-            {steps.map((s) => (
-              <div key={s.title} className="step">
-                <h3>{s.title}</h3>
-                <p>{s.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Who It's For */}
-      <section className="section section-border">
-        <div className="container">
-          <div ref={audRef} className={`text-center reveal ${audVisible ? 'visible' : ''}`} style={{ maxWidth: 640, margin: '0 auto' }}>
-            <span className="label">Who It's For</span>
-            <h2 className="heading-lg" style={{ marginTop: 12 }}>
-              Built for <span className="gradient-text">Every Learning Environment</span>
-            </h2>
-            <p className="body-lg" style={{ marginTop: 12 }}>
-              Whether you're a school, university, or corporate trainer — Procto Vision adapts to your needs.
-            </p>
-          </div>
-          <div className="audience-grid" style={{ marginTop: 48 }}>
-            {audiences.map((a) => {
-              const Icon = a.icon;
-              return (
-                <div key={a.title} className="audience-card">
-                  <div className="audience-icon">
-                    <Icon size={28} />
-                  </div>
-                  <h3>{a.title}</h3>
-                  <p>{a.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Security Preview */}
-      <section className="section section-border">
-        <div className="container">
-          <div
-            ref={secRef}
-            className={`reveal ${secVisible ? 'visible' : ''}`}
-            style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}
-          >
-            <div>
-              <span className="label">Security First</span>
-              <h2 className="heading-lg" style={{ marginTop: 12 }}>
-                Enterprise-Grade Security for Every Exam
-              </h2>
-              <p className="body-lg" style={{ marginTop: 16 }}>
-                Our multi-layered security architecture ensures exam integrity at every step. From secure
-                login to post-exam audit trails, every detail is covered.
-              </p>
-              <ul style={{ marginTop: 20, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
-                {[
-                  'End-to-end encrypted exam sessions',
-                  'Real-time proctoring activity logs',
-                  'Tab-switch and fullscreen monitoring',
-                  'IP-based access restrictions',
-                ].map((item) => (
-                  <li key={item} style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: '0.95rem', color: 'var(--text-secondary)' }}>
-                    <CheckCircle size={18} style={{ color: 'var(--success)', flexShrink: 0 }} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <Link to="/security" className="btn btn-primary" style={{ marginTop: 24 }}>
-                Learn More About Security <ArrowRight size={16} />
-              </Link>
-            </div>
-            <div
-              style={{
-                background: 'var(--bg-card)',
-                borderRadius: 'var(--radius-xl)',
-                padding: 48,
-                textAlign: 'center',
-                border: '1px solid var(--border)',
-              }}
-            >
-              <Shield size={64} style={{ color: 'var(--accent-light)', marginBottom: 16 }} />
-              <h3 className="heading-md">Zero-Trust Exam Environment</h3>
-              <p className="body-md" style={{ marginTop: 8 }}>
-                Every action is verified, every session is monitored, every result is trustworthy.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Preview */}
-      <section className="section section-border">
-        <div className="container">
-          <div ref={priceRef} className={`text-center reveal ${priceVisible ? 'visible' : ''}`} style={{ maxWidth: 640, margin: '0 auto' }}>
-            <span className="label">Pricing</span>
-            <h2 className="heading-lg" style={{ marginTop: 12 }}>
-              Simple, Transparent <span className="gradient-text">Pricing</span>
-            </h2>
-            <p className="body-lg" style={{ marginTop: 12 }}>
-              Pay only for what you use. No hidden fees, no long-term contracts.
-            </p>
-          </div>
-          <div className="pricing-cards" style={{ marginTop: 48 }}>
-            <div className="pricing-card">
-              <h3>{pricing.perTest.name}</h3>
-              <p className="body-sm" style={{ color: 'var(--text-muted)' }}>{pricing.perTest.description}</p>
-              <div className="price">
-                ₹{pricing.perTest.basePrice} <small>+ per student</small>
-              </div>
-              <ul>
-                {pricing.perTest.features.map((f) => (
-                  <li key={f}>{f}</li>
-                ))}
-              </ul>
-              <Link to="/contact" className="btn btn-secondary" style={{ width: '100%' }}>
-                Get Started
-              </Link>
-            </div>
-            <div className="pricing-card featured">
-              <h3>{pricing.enterprise.name}</h3>
-              <p className="body-sm" style={{ color: 'var(--text-muted)' }}>{pricing.enterprise.description}</p>
-              <div className="price">
-                Custom <small>tailored for you</small>
-              </div>
-              <ul>
-                {pricing.enterprise.features.map((f) => (
-                  <li key={f}>{f}</li>
-                ))}
-              </ul>
-              <Link to="/contact" className="btn btn-primary" style={{ width: '100%' }}>
-                Contact Sales
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Leadership */}
-      <section className="section section-border">
-        <div className="container">
-          <div ref={leadRef} className={`text-center reveal ${leadVisible ? 'visible' : ''}`} style={{ maxWidth: 640, margin: '0 auto' }}>
-            <span className="label">Leadership</span>
-            <h2 className="heading-lg" style={{ marginTop: 12 }}>
-              Meet the Team Behind <span className="gradient-text">Procto Vision</span>
-            </h2>
-            <p className="body-lg" style={{ marginTop: 12 }}>
-              A team of passionate educators and technologists committed to transforming online examinations.
-            </p>
-          </div>
-          <div className="leadership-grid" style={{ marginTop: 48 }}>
-            {team.map((member) => (
-              <div key={member.name} className="leadership-card">
-                <div className="leadership-photo">
-                  {member.name.split(' ').map((n) => n[0]).join('')}
-                </div>
-                <h3>{member.name}</h3>
-                <div className="role">{member.role}</div>
-                <div className="bio">{member.bio}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="section section-border">
-        <div className="container">
-          <div
-            ref={ctaRef}
-            className={`reveal ${ctaVisible ? 'visible' : ''}`}
-            style={{
-              background: 'var(--bg-card)',
-              borderRadius: 'var(--radius-xl)',
-              padding: '64px 48px',
-              textAlign: 'center',
-              position: 'relative',
-              overflow: 'hidden',
-              border: '1px solid var(--border)',
-            }}
-          >
-            <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, var(--accent-glow-strong) 0%, transparent 70%)', pointerEvents: 'none' }} />
-            <div style={{ position: 'relative', zIndex: 1 }}>
-              <h2 className="heading-lg">
-                Ready to Transform Your <span className="gradient-text">Examinations</span>?
-              </h2>
-              <p className="body-lg" style={{ marginTop: 12, maxWidth: 560, margin: '12px auto 0' }}>
-                Join hundreds of institutions already using Procto Vision for secure, reliable online exams.
-              </p>
-              <div style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 32, flexWrap: 'wrap' }}>
-                <Link to="/contact" className="btn btn-primary btn-lg">
-                  Request Demo <ChevronRight size={16} />
-                </Link>
-                <Link to="/signup" className="btn btn-secondary btn-lg">
-                  Get Started Free <ArrowRight size={16} />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
-
 export default function Home() {
-  const { ref: heroRef, isInView: heroVisible } = useInView();
-  const { ref: trustRef, isInView: trustVisible } = useInView();
+  useEffect(() => { document.title = `${brand.name} — Secure Online Examinations`; }, []);
 
   return (
     <>
       {/* Hero */}
       <section className="hero">
         <div className="hero-glow" />
-        <div className="container">
-          <div
-            ref={heroRef}
-            className={`hero-content reveal ${heroVisible ? 'visible' : ''}`}
-          >
-            <div className="hero-badge">
-              <Zap size={14} /> Trusted by 200+ Institutions
-            </div>
-            <h1 className="heading-xl hero-title">
-              <span className="gradient-text">Secure Online Examinations</span>, Built for Institutions
-            </h1>
-            <p className="hero-subtitle">
-              An enterprise-grade examination and proctoring platform designed for schools, universities,
-              and organizations that demand security, reliability, and simplicity.
+        <div className="hero-orb hero-orb-1" />
+        <div className="hero-orb hero-orb-2" />
+        <div className="hero-orb hero-orb-3" />
+        <div className="hero-content">
+          <Reveal delay={0}>
+            <p className="hero-eyebrow">
+              <Zap size={14} /> Secure Online Examinations
             </p>
+          </Reveal>
+          <Reveal delay={100}>
+            <h1 className="headline-super hero-title">
+              Exams, managed<br />with confidence.
+            </h1>
+          </Reveal>
+          <Reveal delay={200}>
+            <p className="hero-subtitle">
+              {brand.name} helps institutions and educators conduct secure, structured online examinations with controlled access and future-ready proctoring.
+            </p>
+          </Reveal>
+          <Reveal delay={300}>
             <div className="hero-actions">
-              <Link to="/contact" className="btn btn-primary btn-lg">
-                Request Demo <ChevronRight size={18} />
+              <Link to="/contact" className="btn btn-primary">
+                Request a Demo <ArrowRight size={16} />
               </Link>
-              <Link to="/signup" className="btn btn-secondary btn-lg">
-                Get Started <ArrowRight size={18} />
+              <Link to="/signup" className="btn btn-secondary hero-cta-secondary">
+                Get Started
               </Link>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* What is Procto Vision */}
+      <section className="section section-gray">
+        <div className="container text-center">
+          <Reveal>
+            <p className="caption" style={{ marginBottom: 10 }}>What is {brand.name}</p>
+          </Reveal>
+          <Reveal delay={100}>
+            <h2 className="headline-large" style={{ marginBottom: 18 }}>
+              The examination platform<br />built for institutions.
+            </h2>
+          </Reveal>
+          <Reveal delay={200}>
+            <p className="subhead-large" style={{ maxWidth: 660, margin: '0 auto' }}>
+              A complete ecosystem for creating, managing, and conducting secure online examinations — designed for schools, universities, coaching institutes, and enterprises.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="section" id="features">
+        <div className="container text-center">
+          <Reveal>
+            <p className="caption" style={{ marginBottom: 10 }}>Platform</p>
+          </Reveal>
+          <Reveal delay={100}>
+            <h2 className="headline-large" style={{ marginBottom: 56 }}>
+              Everything you need to<br />manage examinations.
+            </h2>
+          </Reveal>
+          <div className="feature-row">
+            {features.map((f, i) => (
+              <Reveal key={i} delay={i * 80}>
+                <div className="feature-item">
+                  <div className="feature-item-icon">
+                    <f.icon size={30} style={{ color: f.color }} />
+                  </div>
+                  <h3>{f.title}</h3>
+                  <p>{f.desc}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Trust Bar */}
-      <div className="trust-bar">
-        <div
-          ref={trustRef}
-          className={`container trust-grid reveal ${trustVisible ? 'visible' : ''}`}
-        >
-          <div className="trust-item">
-            <div className="trust-icon">
-              <Lock size={22} />
-            </div>
-            <h4>Secure Access</h4>
-            <p>End-to-end encryption</p>
-          </div>
-          <div className="trust-item">
-            <div className="trust-icon">
-              <BookOpen size={22} />
-            </div>
-            <h4>Exam Management</h4>
-            <p>Full lifecycle control</p>
-          </div>
-          <div className="trust-item">
-            <div className="trust-icon">
-              <Users size={22} />
-            </div>
-            <h4>Role-Based Architecture</h4>
-            <p>Admin, teacher, student</p>
-          </div>
-          <div className="trust-item">
-            <div className="trust-icon">
-              <Globe size={22} />
-            </div>
-            <h4>Scalable Platform</h4>
-            <p>From 10 to 10,000 users</p>
+      {/* How It Works */}
+      <section className="section section-gray" id="how-it-works">
+        <div className="container text-center">
+          <Reveal>
+            <p className="caption" style={{ marginBottom: 10 }}>How It Works</p>
+          </Reveal>
+          <Reveal delay={100}>
+            <h2 className="headline-large" style={{ marginBottom: 56 }}>
+              From setup to exam day,<br />in four simple steps.
+            </h2>
+          </Reveal>
+          <div className="steps-flow">
+            {steps.map((s, i) => (
+              <Reveal key={i} delay={i * 120}>
+                <div className="step-item">
+                  <div className="step-number" style={{ background: `linear-gradient(135deg, ${s.color}, ${s.color}dd)` }}>
+                    {s.num}
+                  </div>
+                  <h3>{s.title}</h3>
+                  <p>{s.desc}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      <FeatureSection />
+      {/* X-Code */}
+      <section className="section-dark section-lg" style={{ textAlign: 'center' }}>
+        <div className="container">
+          <Reveal>
+            <p className="caption" style={{ color: 'var(--text-white-muted)', marginBottom: 10 }}>X-Code Access</p>
+          </Reveal>
+          <Reveal delay={100}>
+            <h2 className="headline-large" style={{ marginBottom: 18 }}>
+              One code. One exam.<br />Total control.
+            </h2>
+          </Reveal>
+          <Reveal delay={200}>
+            <p className="subhead-large" style={{ maxWidth: 580, margin: '0 auto 44px', color: 'var(--text-white-muted)' }}>
+              Each examination receives a unique X-Code. Students enter this code to access their designated exam — simple, secure, and controlled.
+            </p>
+          </Reveal>
+          <Reveal delay={300} animation="reveal-scale">
+            <div className="xcode-display">
+              <p className="caption" style={{ color: 'var(--text-white-muted)', marginBottom: 10 }}>Example X-Code</p>
+              <p className="code">PV-7K4M-82QX</p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Who It's For */}
+      <section className="section" id="audiences">
+        <div className="container text-center">
+          <Reveal>
+            <p className="caption" style={{ marginBottom: 10 }}>Who It's For</p>
+          </Reveal>
+          <Reveal delay={100}>
+            <h2 className="headline-large" style={{ marginBottom: 56 }}>
+              Built for every<br />institution.
+            </h2>
+          </Reveal>
+          <div className="audience-row">
+            {audiences.map((a, i) => (
+              <Reveal key={i} delay={i * 80}>
+                <div className="feature-item glow-card" style={{ padding: '40px 18px' }}>
+                  <div className="feature-item-icon"><a.icon size={28} /></div>
+                  <h3 style={{ fontSize: '1rem' }}>{a.label}</h3>
+                  <p style={{ fontSize: '0.82rem' }}>{a.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Security */}
+      <section className="section section-gray" id="security">
+        <div className="container">
+          <div className="content-block">
+            <div className="content-block-text">
+              <Reveal>
+                <p className="caption" style={{ marginBottom: 10 }}>Security</p>
+              </Reveal>
+              <Reveal delay={100}>
+                <h2 className="headline-medium" style={{ marginBottom: 14 }}>
+                  Designed for secure<br />examination workflows.
+                </h2>
+              </Reveal>
+              <Reveal delay={200}>
+                <p className="subhead-medium" style={{ marginBottom: 24 }}>
+                  Security is not a feature — it's the foundation. {brand.name} is built with a security-first architecture designed to maintain examination integrity at every level.
+                </p>
+              </Reveal>
+              <Reveal delay={300}>
+                <Link to="/security" className="btn btn-secondary">Learn more about security</Link>
+              </Reveal>
+            </div>
+            <Reveal delay={200} animation="reveal-right">
+              <div className="content-block-visual-mock dark" style={{
+                background: 'linear-gradient(135deg, #0f0f1a, #1a1a3e)',
+                position: 'relative',
+                overflow: 'hidden',
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'radial-gradient(circle at 30% 40%, rgba(0,113,227,0.15) 0%, transparent 60%)',
+                  pointerEvents: 'none',
+                }} />
+                <div style={{ textAlign: 'center', padding: 44, position: 'relative', zIndex: 1 }}>
+                  <Shield size={52} style={{ color: 'var(--accent)', marginBottom: 18 }} />
+                  <p style={{ color: 'var(--text-white-muted)', fontSize: '0.95rem', fontWeight: 500 }}>Security-First Architecture</p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section className="section" id="pricing">
+        <div className="container text-center">
+          <Reveal>
+            <p className="caption" style={{ marginBottom: 10 }}>Pricing</p>
+          </Reveal>
+          <Reveal delay={100}>
+            <h2 className="headline-large" style={{ marginBottom: 56 }}>
+              Simple, transparent<br />pricing.
+            </h2>
+          </Reveal>
+          <div className="pricing-row">
+            <Reveal delay={100}>
+              <div className="pricing-item">
+                <p className="caption">Per Test</p>
+                <p className="subhead-medium" style={{ marginBottom: 0 }}>Pay per examination conducted</p>
+                <p className="price">&#8377;499</p>
+                <p className="price-note">base price + per student</p>
+                <ul>
+                  {['Online examination access', 'X-Code exam entry', 'Student management', 'Exam analytics', 'Email support'].map((f, i) => (
+                    <li key={i}>{f}</li>
+                  ))}
+                </ul>
+                <Link to="/signup" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>Get Started</Link>
+              </div>
+            </Reveal>
+            <Reveal delay={200}>
+              <div className="pricing-item featured">
+                <p className="caption" style={{ color: 'var(--accent)' }}>Enterprise</p>
+                <p className="subhead-medium" style={{ marginBottom: 0 }}>Custom solution for institutions</p>
+                <p className="price">Custom</p>
+                <p className="price-note">tailored to your needs</p>
+                <ul>
+                  {['Unlimited examinations', 'Full proctoring suite', 'Custom integrations', 'Dedicated support', 'API access'].map((f, i) => (
+                    <li key={i}>{f}</li>
+                  ))}
+                </ul>
+                <Link to="/contact" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', background: 'white', color: 'var(--bg-dark)' }}>Contact Sales</Link>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership */}
+      <section className="section section-gray" id="leadership">
+        <div className="container text-center">
+          <Reveal>
+            <p className="caption" style={{ marginBottom: 10 }}>Leadership</p>
+          </Reveal>
+          <Reveal delay={100}>
+            <h2 className="headline-large" style={{ marginBottom: 56 }}>
+              The team behind<br />{brand.name}.
+            </h2>
+          </Reveal>
+          <div className="leadership-row">
+            {team.map((m, i) => (
+              <Reveal key={i} delay={i * 100}>
+                <div className="leadership-item">
+                  <div className="leadership-photo">{m.name.split(' ').map(n => n[0]).join('')}</div>
+                  <h3>{m.name}</h3>
+                  <p className="role">{m.role}</p>
+                  <p className="bio">{m.bio}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="section-dark section-lg" style={{ textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'radial-gradient(ellipse at center, rgba(0,113,227,0.12) 0%, transparent 60%)',
+          pointerEvents: 'none',
+        }} />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <Reveal>
+            <h2 className="headline-large" style={{ marginBottom: 18 }}>
+              Ready to transform your<br />examinations?
+            </h2>
+          </Reveal>
+          <Reveal delay={100}>
+            <p className="subhead-large" style={{ maxWidth: 520, margin: '0 auto 36px', color: 'var(--text-white-muted)' }}>
+              Get started with {brand.name} today or request a personalized demo for your institution.
+            </p>
+          </Reveal>
+          <Reveal delay={200}>
+            <div style={{ display: 'flex', gap: 18, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link to="/contact" className="btn btn-primary">
+                Request a Demo <ArrowRight size={16} />
+              </Link>
+              <Link to="/signup" className="btn btn-outline" style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'white' }}>
+                Create Account
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section className="section" id="contact">
+        <div className="container">
+          <div className="contact-row">
+            <div>
+              <Reveal>
+                <p className="caption" style={{ marginBottom: 10 }}>Contact</p>
+              </Reveal>
+              <Reveal delay={100}>
+                <h2 className="headline-medium" style={{ marginBottom: 22 }}>
+                  Get in touch.
+                </h2>
+              </Reveal>
+              <Reveal delay={200}>
+                <div className="contact-info-stack">
+                  <div className="contact-info-item">
+                    <span className="icon"><Mail size={16} /></span>
+                    <div><h4>Email</h4><p>{brand.email}</p></div>
+                  </div>
+                  <div className="contact-info-item">
+                    <span className="icon"><Phone size={16} /></span>
+                    <div><h4>Phone</h4><p>{brand.phone}</p></div>
+                  </div>
+                  <div className="contact-info-item">
+                    <span className="icon"><MapPin size={16} /></span>
+                    <div><h4>Location</h4><p>CGC University, Mohali, India</p></div>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+            <Reveal delay={200} animation="reveal-right">
+              <div className="map-frame">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54899.609333215936!2d76.59418825435323!3d30.68392849932244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fe5b795735cfd%3A0xb287b4430b6720fb!2sCGC%20University%2C%20Mohali!5e0!3m2!1sen!2sin!4v1788940890391!5m2!1sen!2sin"
+                  width="100%" height="340" style={{ border: 0, display: 'block' }}
+                  allowFullScreen="" loading="lazy" referrerPolicy="strict-origin-when-cross-origin"
+                  title="Office Location"
+                />
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

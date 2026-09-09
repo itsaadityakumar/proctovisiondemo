@@ -3,32 +3,25 @@ import { useAuth } from '../../hooks/useAuth';
 import { Shield, LogOut } from 'lucide-react';
 
 export default function AuthenticatedHeader() {
-  const { user, logout } = useAuth();
+  const { user, logoutUser } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    await logout();
-    navigate('/login');
+  const handleLogout = () => {
+    logoutUser();
+    navigate('/');
   };
 
   return (
     <header className="auth-header">
-      <div className="auth-header-logo">
-        <Link to="/dashboard" className="auth-header-logo__link">
-          <span className="auth-header-logo__icon">
-            <Shield size={18} />
-          </span>
-          ProctoVision
-        </Link>
-      </div>
+      <Link to="/" className="auth-header-logo">
+        <span className="logo-icon"><Shield size={18} /></span>
+        {user?.role === 'teacher' ? 'Procto Vision Teacher' : 'Procto Vision Student'}
+      </Link>
 
       <div className="auth-header-user">
-        <span className="auth-header-user__name">
-          {user?.displayName || user?.email}
-        </span>
-        <button className="auth-header-user__logout" onClick={handleLogout}>
-          <LogOut size={16} />
-          Log Out
+        <span className="name">{user?.displayName || user?.email}</span>
+        <button className="btn btn-outline btn-sm" onClick={handleLogout}>
+          <LogOut size={14} /> Log Out
         </button>
       </div>
     </header>
