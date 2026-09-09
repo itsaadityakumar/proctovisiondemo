@@ -36,7 +36,7 @@ function Dropdown({ label, links, isOpen, onToggle, onClose }) {
       </button>
       <div className={`nav-dropdown-menu${isOpen ? ' open' : ''}`} style={!isOpen ? { pointerEvents: 'none' } : undefined}>
         {links.map((l) => (
-          <Link key={l.path} to={l.path} className="nav-dropdown-item" onClick={onClose}>
+          <Link key={l.path} to={l.path} className="nav-dropdown-item" onClick={() => { onClose(); window.scrollTo(0, 0); }}>
             <span className="nav-dropdown-icon"><l.icon size={16} /></span>
             <span className="nav-dropdown-text">
               <span className="nav-dropdown-label">{l.label}</span>
@@ -82,7 +82,7 @@ export default function Navbar() {
           </Link>
 
           <nav className="navbar-links">
-            <Link to="/" className={`nav-link${isActive('/') ? ' active' : ''}`}>Home</Link>
+            <Link to="/" className={`nav-link${isActive('/') ? ' active' : ''}`} onClick={() => window.scrollTo(0, 0)}>Home</Link>
             <Dropdown
               label="Product"
               links={productLinks}
@@ -97,7 +97,7 @@ export default function Navbar() {
               onToggle={() => setOpenDrop(openDrop === 'company' ? null : 'company')}
               onClose={() => setOpenDrop(null)}
             />
-            <Link to="/pricing" className={`nav-link${isActive('/pricing') ? ' active' : ''}`}>Subscription</Link>
+            <Link to="/pricing" className={`nav-link${isActive('/pricing') ? ' active' : ''}`} onClick={() => window.scrollTo(0, 0)}>Subscription</Link>
           </nav>
 
           <div className="navbar-actions">
@@ -124,11 +124,11 @@ export default function Navbar() {
           </button>
         </div>
         <div className="mobile-nav-links">
-          <Link to="/" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>Home</Link>
+          <Link to="/" className="mobile-nav-link" onClick={() => { setMobileOpen(false); window.scrollTo(0, 0); }}>Home</Link>
           <div className="mobile-nav-section">
             <span className="mobile-nav-section-title">Product</span>
             {productLinks.map((l) => (
-              <Link key={l.path} to={l.path} className="mobile-nav-link" onClick={() => setMobileOpen(false)}>
+              <Link key={l.path} to={l.path} className="mobile-nav-link" onClick={() => { setMobileOpen(false); window.scrollTo(0, 0); }}>
                 <l.icon size={16} /> {l.label}
               </Link>
             ))}
@@ -136,12 +136,12 @@ export default function Navbar() {
           <div className="mobile-nav-section">
             <span className="mobile-nav-section-title">Company</span>
             {companyLinks.map((l) => (
-              <Link key={l.path} to={l.path} className="mobile-nav-link" onClick={() => setMobileOpen(false)}>
+              <Link key={l.path} to={l.path} className="mobile-nav-link" onClick={() => { setMobileOpen(false); window.scrollTo(0, 0); }}>
                 <l.icon size={16} /> {l.label}
               </Link>
             ))}
           </div>
-          <Link to="/pricing" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>Subscription</Link>
+          <Link to="/pricing" className="mobile-nav-link" onClick={() => { setMobileOpen(false); window.scrollTo(0, 0); }}>Subscription</Link>
         </div>
         <div className="mobile-nav-actions">
           <Link to="/login" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }} onClick={() => setMobileOpen(false)}>Login</Link>
