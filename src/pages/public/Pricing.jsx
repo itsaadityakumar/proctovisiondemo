@@ -17,10 +17,10 @@ export default function Pricing() {
         <div className="container">
           <Reveal className="hero-content text-center mx-auto">
             <p className="caption" style={{ marginBottom: 12 }}>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><Zap size={12} /> Simple Pricing</span>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><Zap size={12} /> Simple Subscription</span>
             </p>
             <h1 className="headline-super hero-title">
-              Transparent, fair pricing.
+              Transparent, fair subscription.
             </h1>
             <p className="hero-subtitle">
               Pay only for what you use. No hidden fees, no surprise charges.
@@ -172,7 +172,7 @@ export default function Pricing() {
           <Reveal>
             <p className="caption" style={{ marginBottom: 8 }}>Questions?</p>
             <h2 className="headline-large">
-              Pricing FAQ.
+              Subscription FAQ.
             </h2>
           </Reveal>
           <div style={{ maxWidth: 640, margin: '48px auto 0', display: 'flex', flexDirection: 'column', gap: 12, textAlign: 'left' }}>

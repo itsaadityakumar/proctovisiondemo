@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import { brand, team } from '../../config/brand';
+import { brand } from '../../config/brand';
 import Reveal from '../../components/ui/Reveal';
 import {
   Shield, BookOpen, Lock, Users, BarChart3, Key, Zap,
@@ -145,31 +145,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* X-Code */}
-      <section className="section-dark section-lg" style={{ textAlign: 'center' }}>
-        <div className="container">
-          <Reveal>
-            <p className="caption" style={{ color: 'var(--text-white-muted)', marginBottom: 10 }}>X-Code Access</p>
-          </Reveal>
-          <Reveal delay={100}>
-            <h2 className="headline-large" style={{ marginBottom: 18 }}>
-              One code. One exam.<br />Total control.
-            </h2>
-          </Reveal>
-          <Reveal delay={200}>
-            <p className="subhead-large" style={{ maxWidth: 580, margin: '0 auto 44px', color: 'var(--text-white-muted)' }}>
-              Each examination receives a unique X-Code. Students enter this code to access their designated exam — simple, secure, and controlled.
-            </p>
-          </Reveal>
-          <Reveal delay={300} animation="reveal-scale">
-            <div className="xcode-display">
-              <p className="caption" style={{ color: 'var(--text-white-muted)', marginBottom: 10 }}>Example X-Code</p>
-              <p className="code">PV-7K4M-82QX</p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* Who It's For */}
       <section className="section" id="audiences">
         <div className="container text-center">
@@ -235,76 +210,6 @@ export default function Home() {
                 </div>
               </div>
             </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section className="section" id="pricing">
-        <div className="container text-center">
-          <Reveal>
-            <p className="caption" style={{ marginBottom: 10 }}>Pricing</p>
-          </Reveal>
-          <Reveal delay={100}>
-            <h2 className="headline-large" style={{ marginBottom: 56 }}>
-              Simple, transparent<br />pricing.
-            </h2>
-          </Reveal>
-          <div className="pricing-row">
-            <Reveal delay={100}>
-              <div className="pricing-item">
-                <p className="caption">Per Test</p>
-                <p className="subhead-medium" style={{ marginBottom: 0 }}>Pay per examination conducted</p>
-                <p className="price">&#8377;499</p>
-                <p className="price-note">base price + per student</p>
-                <ul>
-                  {['Online examination access', 'X-Code exam entry', 'Student management', 'Exam analytics', 'Email support'].map((f, i) => (
-                    <li key={i}>{f}</li>
-                  ))}
-                </ul>
-                <Link to="/signup" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>Get Started</Link>
-              </div>
-            </Reveal>
-            <Reveal delay={200}>
-              <div className="pricing-item featured">
-                <p className="caption" style={{ color: 'var(--accent)' }}>Enterprise</p>
-                <p className="subhead-medium" style={{ marginBottom: 0 }}>Custom solution for institutions</p>
-                <p className="price">Custom</p>
-                <p className="price-note">tailored to your needs</p>
-                <ul>
-                  {['Unlimited examinations', 'Full proctoring suite', 'Custom integrations', 'Dedicated support', 'API access'].map((f, i) => (
-                    <li key={i}>{f}</li>
-                  ))}
-                </ul>
-                <Link to="/contact" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', background: 'white', color: 'var(--bg-dark)' }}>Contact Sales</Link>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Leadership */}
-      <section className="section section-gray" id="leadership">
-        <div className="container text-center">
-          <Reveal>
-            <p className="caption" style={{ marginBottom: 10 }}>Leadership</p>
-          </Reveal>
-          <Reveal delay={100}>
-            <h2 className="headline-large" style={{ marginBottom: 56 }}>
-              The team behind<br />{brand.name}.
-            </h2>
-          </Reveal>
-          <div className="leadership-row">
-            {team.map((m, i) => (
-              <Reveal key={i} delay={i * 100}>
-                <div className="leadership-item">
-                  <div className="leadership-photo">{m.name.split(' ').map(n => n[0]).join('')}</div>
-                  <h3>{m.name}</h3>
-                  <p className="role">{m.role}</p>
-                  <p className="bio">{m.bio}</p>
-                </div>
-              </Reveal>
-            ))}
           </div>
         </div>
       </section>

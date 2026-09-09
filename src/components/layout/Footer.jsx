@@ -6,7 +6,7 @@ const platformLinks = [
   { to: '/platform', label: 'Features' },
   { to: '/how-it-works', label: 'How It Works' },
   { to: '/security', label: 'Security' },
-  { to: '/pricing', label: 'Pricing' },
+  { to: '/pricing', label: 'Subscription' },
 ];
 
 const companyLinks = [

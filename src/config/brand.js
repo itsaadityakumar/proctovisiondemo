@@ -126,6 +126,6 @@ export const navLinks = [
   { label: 'Platform', path: '/platform' },
   { label: 'How It Works', path: '/how-it-works' },
   { label: 'Security', path: '/security' },
-  { label: 'Pricing', path: '/pricing' },
+  { label: 'Subscription', path: '/pricing' },
   { label: 'Contact', path: '/contact' },
 ];

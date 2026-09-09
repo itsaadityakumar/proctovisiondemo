@@ -4,6 +4,7 @@ import { ToastProvider } from './hooks/useToast';
 
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import ScrollToTop from './components/ui/ScrollToTop';
 
 import Home from './pages/public/Home';
 import About from './pages/public/About';
@@ -86,6 +87,7 @@ function AppRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <AuthProvider>
         <ToastProvider>
           <AppRoutes />

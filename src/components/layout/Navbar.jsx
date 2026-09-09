@@ -97,7 +97,7 @@ export default function Navbar() {
               onToggle={() => setOpenDrop(openDrop === 'company' ? null : 'company')}
               onClose={() => setOpenDrop(null)}
             />
-            <Link to="/pricing" className={`nav-link${isActive('/pricing') ? ' active' : ''}`}>Pricing</Link>
+            <Link to="/pricing" className={`nav-link${isActive('/pricing') ? ' active' : ''}`}>Subscription</Link>
           </nav>
 
           <div className="navbar-actions">
@@ -116,9 +116,9 @@ export default function Navbar() {
 
       <div className={`mobile-nav${mobileOpen ? ' open' : ''}`}>
         <div className="mobile-nav-header">
-          <Link to="/" className="navbar-logo" onClick={() => setMobileOpen(false)}>
+          <span className="navbar-logo" style={{ pointerEvents: 'none' }}>
             <span className="logo-icon"><Shield size={14} /></span>{brand.name}
-          </Link>
+          </span>
           <button className="navbar-mobile-btn" onClick={() => setMobileOpen(false)} aria-label="Close">
             <X size={20} />
           </button>
@@ -141,7 +141,7 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-          <Link to="/pricing" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>Pricing</Link>
+          <Link to="/pricing" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>Subscription</Link>
         </div>
         <div className="mobile-nav-actions">
           <Link to="/login" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }} onClick={() => setMobileOpen(false)}>Login</Link>
