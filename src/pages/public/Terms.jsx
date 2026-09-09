@@ -1,0 +1,82 @@
+import { Link } from 'react-router-dom';
+import { brand } from '../../config/brand';
+import { useInView } from '../../hooks/useInView';
+
+export default function Terms() {
+  const { ref, isInView } = useInView();
+
+  return (
+    <section className="section-lg" style={{ paddingTop: 'calc(var(--nav-h) + 40px)' }}>
+      <div className="container" style={{ maxWidth: 800 }}>
+        <div ref={ref} className={`text-center reveal ${isInView ? 'visible' : ''}`} style={{ marginBottom: 48 }}>
+          <h1 className="heading-lg">
+            Terms &amp; <span className="gradient-text">Conditions</span>
+          </h1>
+          <p className="body-md" style={{ marginTop: 8 }}>
+            Last updated: September 9, 2026
+          </p>
+        </div>
+
+        <div className="card" style={{ marginBottom: 24 }}>
+          <h2 className="heading-sm" style={{ marginBottom: 12 }}>1. Acceptance of Terms</h2>
+          <p className="body-md">
+            By accessing or using the {brand.name} platform ("Service"), you agree to be bound by these Terms &amp; Conditions. If you do not agree to these terms, you must not use the Service. These terms apply to all users, including students, teachers, administrators, and any other visitors to the platform. We reserve the right to modify these terms at any time, and continued use of the Service constitutes acceptance of any changes.
+          </p>
+        </div>
+
+        <div className="card" style={{ marginBottom: 24 }}>
+          <h2 className="heading-sm" style={{ marginBottom: 12 }}>2. Use of Platform</h2>
+          <p className="body-md">
+            The {brand.name} platform is designed to facilitate secure online examinations and proctoring. You agree to use the platform only for its intended purpose and in compliance with all applicable laws and regulations. You shall not attempt to circumvent any security measures, exploit vulnerabilities, or use the platform for any unauthorized or illegal activity. Any misuse of the platform may result in immediate termination of your account and potential legal action.
+          </p>
+        </div>
+
+        <div className="card" style={{ marginBottom: 24 }}>
+          <h2 className="heading-sm" style={{ marginBottom: 12 }}>3. User Accounts</h2>
+          <p className="body-md">
+            To access certain features, you must create an account with accurate and complete information. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You must notify us immediately of any unauthorized use of your account. We reserve the right to suspend or terminate accounts that violate these terms or that we reasonably believe are compromised. Each user may maintain only one active account; duplicate accounts are prohibited.
+          </p>
+        </div>
+
+        <div className="card" style={{ marginBottom: 24 }}>
+          <h2 className="heading-sm" style={{ marginBottom: 12 }}>4. Examination Integrity</h2>
+          <p className="body-md">
+            {brand.name} is committed to maintaining the integrity of online examinations. By participating in an examination through this platform, you agree to the following: you will not access unauthorized resources during the exam; you will not communicate with other individuals about exam content; you will not attempt to copy, photograph, or share exam questions or answers; you will comply with all proctoring instructions and requirements. Violations of examination integrity may result in disqualification from the exam, account suspension, and reporting to the relevant institution or authority.
+          </p>
+        </div>
+
+        <div className="card" style={{ marginBottom: 24 }}>
+          <h2 className="heading-sm" style={{ marginBottom: 12 }}>5. Intellectual Property</h2>
+          <p className="body-md">
+            All content, features, and functionality of the {brand.name} platform—including but not limited to text, graphics, logos, icons, images, audio, video, software, and code—are the exclusive property of {brand.name} or its licensors and are protected by copyright, trademark, and other intellectual property laws. You may not reproduce, distribute, modify, create derivative works of, publicly display, or exploit any content from the platform without prior written permission.
+          </p>
+        </div>
+
+        <div className="card" style={{ marginBottom: 24 }}>
+          <h2 className="heading-sm" style={{ marginBottom: 12 }}>6. Limitation of Liability</h2>
+          <p className="body-md">
+            To the maximum extent permitted by law, {brand.name} and its affiliates, officers, directors, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from or related to your use of the platform. This includes, but is not limited to, loss of data, interruption of service, or errors in examination results. Our total liability for any claim arising from use of the platform shall not exceed the amount you have paid to {brand.name} in the twelve months preceding the claim.
+          </p>
+        </div>
+
+        <div className="card">
+          <h2 className="heading-sm" style={{ marginBottom: 12 }}>7. Contact</h2>
+          <p className="body-md" style={{ marginBottom: 16 }}>
+            If you have questions about these Terms &amp; Conditions, please contact us:
+          </p>
+          <p className="body-md">
+            <strong>Email:</strong> {brand.email}
+          </p>
+          <p className="body-md">
+            <strong>Phone:</strong> {brand.phone}
+          </p>
+          <div style={{ marginTop: 24 }}>
+            <Link to="/contact" className="btn btn-secondary btn-sm">
+              Contact Support
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
