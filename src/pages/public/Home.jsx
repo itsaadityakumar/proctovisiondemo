@@ -17,13 +17,6 @@ const features = [
   { icon: BarChart3, title: 'Analytics Ready', desc: 'Examination insights and reporting for institutional decision-making.', color: '#FF375F' },
 ];
 
-const steps = [
-  { num: '01', title: 'Institution Onboarding', desc: 'Schools, colleges, and organizations join the platform.', color: '#0071E3' },
-  { num: '02', title: 'Teacher Creates Exam', desc: 'Educators prepare and configure examinations.', color: '#5856D6' },
-  { num: '03', title: 'X-Code Generated', desc: 'System generates a unique access code for each exam.', color: '#FF9F0A' },
-  { num: '04', title: 'Student Enters X-Code', desc: 'Students log in and enter the code to access their exam.', color: '#34C759' },
-];
-
 const audiences = [
   { icon: GraduationCap, label: 'Schools', desc: 'Structured examinations and student assessment.' },
   { icon: Building2, label: 'Universities', desc: 'Institution-wide academic examination management.' },
@@ -111,33 +104,6 @@ export default function Home() {
                   </div>
                   <h3>{f.title}</h3>
                   <p>{f.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="section section-gray" id="how-it-works">
-        <div className="container text-center">
-          <Reveal>
-            <p className="caption" style={{ marginBottom: 10 }}>How It Works</p>
-          </Reveal>
-          <Reveal delay={100}>
-            <h2 className="headline-large" style={{ marginBottom: 56 }}>
-              From setup to exam day,<br />in four simple steps.
-            </h2>
-          </Reveal>
-          <div className="steps-flow">
-            {steps.map((s, i) => (
-              <Reveal key={i} delay={i * 120}>
-                <div className="step-item">
-                  <div className="step-number" style={{ background: `linear-gradient(135deg, ${s.color}, ${s.color}dd)` }}>
-                    {s.num}
-                  </div>
-                  <h3>{s.title}</h3>
-                  <p>{s.desc}</p>
                 </div>
               </Reveal>
             ))}

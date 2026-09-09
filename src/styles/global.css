@@ -2,6 +2,12 @@
    PROCTO VISION — Design System
    ================================================================ */
 
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 :root {
   --bg: #ffffff;
   --bg-dark: #1d1d1f;
