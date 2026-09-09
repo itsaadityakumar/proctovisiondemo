@@ -2,6 +2,8 @@
 
 Secure online examination and proctoring platform for institutions, educators, and enterprises.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/itsaadityakumar/proctovisiondemo)
+
 ## Quick Start
 
 ```bash
