@@ -98,7 +98,7 @@ export default function Home() {
           <div className="feature-row">
             {features.map((f, i) => (
               <Reveal key={i} delay={i * 80}>
-                <div className="feature-item">
+                <div className="feature-item glow-card">
                   <div className="feature-item-icon">
                     <f.icon size={30} style={{ color: f.color }} />
                   </div>
@@ -125,7 +125,7 @@ export default function Home() {
           <div className="audience-row">
             {audiences.map((a, i) => (
               <Reveal key={i} delay={i * 80}>
-                <div className="feature-item glow-card" style={{ padding: '40px 18px' }}>
+                <div className="feature-item glow-card" style={{ padding: '40px 18px', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%' }}>
                   <div className="feature-item-icon"><a.icon size={28} /></div>
                   <h3 style={{ fontSize: '1rem' }}>{a.label}</h3>
                   <p style={{ fontSize: '0.82rem' }}>{a.desc}</p>

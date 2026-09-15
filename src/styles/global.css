@@ -190,6 +190,12 @@ html.dark .leadership-item:hover {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
   border-color: rgba(255, 255, 255, 0.08);
 }
+html.dark .audience-row .feature-item:hover {
+  background: rgba(0, 113, 227, 0.15);
+}
+html.dark .feature-row .feature-item:hover {
+  background: rgba(0, 113, 227, 0.15);
+}
 
 /* Contact */
 html.dark .contact-info-item {
@@ -1217,6 +1223,7 @@ html.dark .theme-toggle:hover {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
+  align-items: stretch;
 }
 .feature-item {
   text-align: center;
@@ -1225,11 +1232,15 @@ html.dark .theme-toggle:hover {
   border-radius: var(--radius-2xl);
   transition: all 0.5s var(--ease-out);
   border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .feature-item:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
   border-color: var(--border-light);
+  background: var(--bg-card);
 }
 .feature-item-icon {
   width: 60px;
@@ -1323,6 +1334,7 @@ html.dark .theme-toggle:hover {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 14px;
+  align-items: stretch;
 }
 .pricing-item {
   background: var(--bg-gray);
@@ -1331,6 +1343,9 @@ html.dark .theme-toggle:hover {
   text-align: center;
   transition: all 0.5s var(--ease-out);
   border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .pricing-item:hover {
   transform: translateY(-4px);
@@ -1396,6 +1411,7 @@ html.dark .theme-toggle:hover {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 14px;
+  align-items: stretch;
 }
 .leadership-item {
   text-align: center;
@@ -1404,6 +1420,9 @@ html.dark .theme-toggle:hover {
   border-radius: var(--radius-2xl);
   transition: all 0.5s var(--ease-out);
   border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .leadership-item:hover {
   transform: translateY(-6px);
@@ -2929,6 +2948,20 @@ html.dark .form-input.error {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
+  align-items: stretch;
+}
+.audience-row .feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100%;
+}
+.audience-row .feature-item:hover {
+  background: rgba(0, 113, 227, 0.06);
+}
+.feature-row .feature-item:hover {
+  background: rgba(0, 113, 227, 0.06);
 }
 
 @media (max-width: 1024px) {

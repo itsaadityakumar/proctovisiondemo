@@ -208,7 +208,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section" id="leadership">
         <div className="container text-center">
           <Reveal>
             <p className="caption" style={{ marginBottom: 8 }}>Our Team</p>
@@ -223,7 +223,7 @@ export default function About() {
           <div className="leadership-row" style={{ marginTop: 64 }}>
             {team.map((member, i) => (
               <Reveal key={member.name} delay={i * 80}>
-                <div className="leadership-item">
+                <div className="leadership-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%' }}>
                   <div className="leadership-photo">
                     {member.name.split(' ').map((n) => n[0]).join('')}
                   </div>

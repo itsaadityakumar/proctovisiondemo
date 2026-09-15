@@ -36,7 +36,7 @@ function Dropdown({ label, links, isOpen, onToggle, onClose }) {
       </button>
       <div className={`nav-dropdown-menu${isOpen ? ' open' : ''}`} style={!isOpen ? { pointerEvents: 'none' } : undefined}>
         {links.map((l) => (
-          <Link key={l.path} to={l.path} className="nav-dropdown-item" onClick={() => { onClose(); window.scrollTo(0, 0); }}>
+          <Link key={l.path} to={l.path} className="nav-dropdown-item" onClick={() => { onClose(); if (!l.path.includes('#')) window.scrollTo(0, 0); }}>
             <span className="nav-dropdown-icon"><l.icon size={16} /></span>
             <span className="nav-dropdown-text">
               <span className="nav-dropdown-label">{l.label}</span>
@@ -136,7 +136,7 @@ export default function Navbar() {
           <div className="mobile-nav-section">
             <span className="mobile-nav-section-title">Company</span>
             {companyLinks.map((l) => (
-              <Link key={l.path} to={l.path} className="mobile-nav-link" onClick={() => { setMobileOpen(false); window.scrollTo(0, 0); }}>
+              <Link key={l.path} to={l.path} className="mobile-nav-link" onClick={() => { setMobileOpen(false); if (!l.path.includes('#')) window.scrollTo(0, 0); }}>
                 <l.icon size={16} /> {l.label}
               </Link>
             ))}
