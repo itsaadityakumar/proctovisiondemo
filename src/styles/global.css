@@ -659,9 +659,9 @@ a {
   font-size: 0.75rem;
 }
 .navbar-logo-img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
   object-fit: cover;
 }
 .navbar-links {
@@ -2172,9 +2172,9 @@ html.dark .form-input.error {
   font-size: 1rem;
 }
 .auth-header-logo-img {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
   object-fit: cover;
 }
 .auth-header-user {
@@ -2420,9 +2420,9 @@ html.dark .form-input.error {
   gap: 8px;
 }
 .admin-logo-img {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
   object-fit: cover;
 }
 .admin-sidebar nav a {
