@@ -52,7 +52,7 @@ export default function Pricing() {
 
           <div className="pricing-row">
             <Reveal delay={0}>
-              <div className="pricing-item featured">
+              <div className="pricing-item featured" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                 <span className="badge badge-primary" style={{ marginBottom: 16 }}>Most Popular</span>
                 <h2 className="headline-medium">{pricing.perTest.name}</h2>
                 <p className="subhead-medium" style={{ color: 'var(--text-white-muted)', marginBottom: 16 }}>{pricing.perTest.description}</p>
@@ -77,7 +77,7 @@ export default function Pricing() {
                   />
                 </div>
 
-                <ul>
+                <ul style={{ flex: 1 }}>
                   {pricing.perTest.features.map((f) => (
                     <li key={f}>
                       <Check size={14} style={{ color: 'var(--success)' }} />
@@ -86,14 +86,14 @@ export default function Pricing() {
                   ))}
                 </ul>
 
-                <Link to="/contact" className="btn btn-primary" style={{ width: '100%' }}>
+                <Link to="/contact" className="btn btn-primary" style={{ width: '100%', marginTop: 'auto' }}>
                   Get Started <ArrowRight size={14} />
                 </Link>
               </div>
             </Reveal>
 
             <Reveal delay={100}>
-              <div className="pricing-item">
+              <div className="pricing-item" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                 <span className="badge badge-success" style={{ marginBottom: 16 }}>Enterprise</span>
                 <h2 className="headline-medium">{pricing.enterprise.name}</h2>
                 <p className="subhead-medium" style={{ color: 'var(--text-muted)', marginBottom: 16 }}>{pricing.enterprise.description}</p>
@@ -103,7 +103,7 @@ export default function Pricing() {
                   <p className="price-note">Tailored to your institution</p>
                 </div>
 
-                <ul>
+                <ul style={{ flex: 1 }}>
                   {pricing.enterprise.features.map((f) => (
                     <li key={f}>
                       <Check size={14} style={{ color: 'var(--accent)' }} />
@@ -112,7 +112,7 @@ export default function Pricing() {
                   ))}
                 </ul>
 
-                <Link to="/contact" className="btn btn-secondary" style={{ width: '100%', justifyContent: 'center' }}>
+                <Link to="/contact" className="btn btn-secondary" style={{ width: '100%', justifyContent: 'center', marginTop: 'auto' }}>
                   Contact Sales
                 </Link>
               </div>

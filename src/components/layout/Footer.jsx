@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { brand } from '../../config/brand';
-import { Shield, Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 
 const platformLinks = [
   { to: '/platform', label: 'Features' },
@@ -23,7 +23,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <Link to="/" className="navbar-logo" style={{ color: 'var(--text-white)', marginBottom: 14 }}>
-              <span className="logo-icon"><Shield size={14} /></span>{brand.name}
+              <img src="/logo.png" alt="Procto Vision Logo" className="navbar-logo-img" />{brand.name}
             </Link>
             <p>{brand.tagline} — Secure examination platform for institutions and educators.</p>
           </div>

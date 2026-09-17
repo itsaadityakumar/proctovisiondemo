@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { Shield, LogOut } from 'lucide-react';
+import { LogOut } from 'lucide-react';
 
 export default function AuthenticatedHeader() {
   const { user, logoutUser } = useAuth();
@@ -14,7 +14,7 @@ export default function AuthenticatedHeader() {
   return (
     <header className="auth-header">
       <Link to="/" className="auth-header-logo">
-        <span className="logo-icon"><Shield size={18} /></span>
+        <img src="/logo.png" alt="Procto Vision Logo" className="auth-header-logo-img" />
         {user?.role === 'teacher' ? 'Procto Vision Teacher' : 'Procto Vision Student'}
       </Link>
 

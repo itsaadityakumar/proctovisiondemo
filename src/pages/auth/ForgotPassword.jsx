@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useToast } from '../../hooks/useToast';
 import { forgotPassword } from '../../services/authService';
 import { brand } from '../../config/brand';
-import { Shield, Loader2, Check, ArrowLeft } from 'lucide-react';
+import { Loader2, Check, ArrowLeft } from 'lucide-react';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -71,7 +71,7 @@ export default function ForgotPassword() {
 
       <div className="auth-card">
         <Link to="/" className="auth-logo">
-          <span className="auth-logo-icon"><Shield size={26} /></span>
+          <img src="/logo.png" alt="Procto Vision Logo" className="auth-logo-img" />
           <span className="auth-logo-text">{brand.name}</span>
         </Link>
 

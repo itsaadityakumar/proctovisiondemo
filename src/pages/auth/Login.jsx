@@ -4,7 +4,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useToast } from '../../hooks/useToast';
 import { login } from '../../services/authService';
 import { brand } from '../../config/brand';
-import { Shield, Loader2, Check, ArrowLeft } from 'lucide-react';
+import { Loader2, Check, ArrowLeft } from 'lucide-react';
 
 export default function Login() {
   const [activeTab, setActiveTab] = useState('student');
@@ -61,7 +61,7 @@ export default function Login() {
       {/* Glass card */}
       <div className="auth-card">
         <Link to="/" className="auth-logo">
-          <span className="auth-logo-icon"><Shield size={26} /></span>
+          <img src="/logo.png" alt="Procto Vision Logo" className="auth-logo-img" />
           <span className="auth-logo-text">{brand.name}</span>
         </Link>
 

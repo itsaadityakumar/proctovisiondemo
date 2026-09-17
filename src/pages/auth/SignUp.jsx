@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from '../../hooks/useToast';
 import { signup } from '../../services/authService';
 import { brand } from '../../config/brand';
-import { Shield, Loader2, Check, ArrowLeft } from 'lucide-react';
+import { Loader2, Check, ArrowLeft } from 'lucide-react';
 
 const STUDENT_ID_REGEX = /^[A-Z]{3}-STU-\d{4}[A-Z]{2}\d{4}$/;
 const TEACHER_ID_REGEX = /^[A-Z]{3}-TCH-\d{4}$/;
@@ -126,7 +126,7 @@ export default function SignUp() {
       {/* Glass card */}
       <div className="auth-card">
         <Link to="/" className="auth-logo">
-          <span className="auth-logo-icon"><Shield size={26} /></span>
+          <img src="/logo.png" alt="Procto Vision Logo" className="auth-logo-img" />
           <span className="auth-logo-text">{brand.name}</span>
         </Link>
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { institutions, teachers, students, mockExams } from '../../data/mockData';
-import { Building2, GraduationCap, Users, FileText, Shield, BarChart3 } from 'lucide-react';
+import { Building2, GraduationCap, Users, FileText, BarChart3 } from 'lucide-react';
 
 const tabs = [
   { id: 'overview', label: 'Overview', icon: BarChart3 },
@@ -49,7 +49,7 @@ export default function AdminDashboard() {
   return (
     <div className="admin-layout">
       <aside className="admin-sidebar">
-        <div className="logo"><Shield size={20} /> Procto Vision</div>
+        <div className="logo"><img src="/logo.png" alt="Procto Vision Logo" className="admin-logo-img" /> Procto Vision</div>
         <nav>
           {tabs.map((tab) => {
             const Icon = tab.icon;

@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useTheme } from '../../hooks/useTheme';
 import { brand } from '../../config/brand';
-import { Shield, Menu, X, ChevronDown, BookOpen, Lock, Zap, Building2, Users, Phone, Sun, Moon } from 'lucide-react';
+import { Menu, X, ChevronDown, BookOpen, Lock, Zap, Building2, Users, Phone, Sun, Moon } from 'lucide-react';
 
 const productLinks = [
   { label: 'Platform', path: '/platform', icon: BookOpen, desc: 'Complete examination platform' },
@@ -77,7 +77,7 @@ export default function Navbar() {
       <header className={`navbar${scrolled ? ' scrolled' : ''}`}>
         <div className="navbar-inner">
           <Link to="/" className="navbar-logo">
-            <span className="logo-icon"><Shield size={14} /></span>
+            <img src="/logo.png" alt="Procto Vision Logo" className="navbar-logo-img" />
             {brand.name}
           </Link>
 
@@ -115,14 +115,6 @@ export default function Navbar() {
       </header>
 
       <div className={`mobile-nav${mobileOpen ? ' open' : ''}`}>
-        <div className="mobile-nav-header">
-          <span className="navbar-logo" style={{ pointerEvents: 'none' }}>
-            <span className="logo-icon"><Shield size={14} /></span>{brand.name}
-          </span>
-          <button className="navbar-mobile-btn" onClick={() => setMobileOpen(false)} aria-label="Close">
-            <X size={20} />
-          </button>
-        </div>
         <div className="mobile-nav-links">
           <Link to="/" className="mobile-nav-link" onClick={() => { setMobileOpen(false); window.scrollTo(0, 0); }}>Home</Link>
           <div className="mobile-nav-section">
@@ -144,6 +136,10 @@ export default function Navbar() {
           <Link to="/pricing" className="mobile-nav-link" onClick={() => { setMobileOpen(false); window.scrollTo(0, 0); }}>Subscription</Link>
         </div>
         <div className="mobile-nav-actions">
+          <button className="btn btn-outline" style={{ width: '100%', justifyContent: 'center', display: 'flex', alignItems: 'center', gap: 8 }} onClick={() => { toggleTheme(); }}>
+            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+          </button>
           <Link to="/login" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }} onClick={() => setMobileOpen(false)}>Login</Link>
           <Link to="/signup" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={() => setMobileOpen(false)}>Sign Up</Link>
         </div>
